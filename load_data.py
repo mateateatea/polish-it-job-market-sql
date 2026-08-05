@@ -25,6 +25,14 @@ unique_company_names=df['company'].unique()
 
 cleaned_skills = df['skills'].str.split(',').explode().str.strip()
 cleaned_skills=cleaned_skills.str.upper()
+
+skill_corrections = {
+    'JAVASRCIPT': 'JAVASCRIPT',
+    'DATA MODELIING': 'DATA MODELING',
+    'RESTFUL APIS': 'REST API',
+}
+cleaned_skills = cleaned_skills.replace(skill_corrections)
+
 unique_skills=cleaned_skills.drop_duplicates().dropna().tolist()
 
 print(unique_company_names)
